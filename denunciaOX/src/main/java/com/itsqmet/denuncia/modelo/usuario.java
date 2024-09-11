@@ -1,6 +1,5 @@
 package com.itsqmet.denuncia.modelo;
 
-import java.time.*;
 import java.util.*;
 
 import javax.persistence.*;
@@ -27,8 +26,8 @@ public class usuario {
     @Column(length = 50) // 
     String password;
     @Required
-	@DefaultValueCalculator(CurrentLocalDateCalculator.class)
-    private LocalDate fechaAlta;
+    @DefaultValueCalculator(CurrentDateCalculator.class)
+    private Date fechaAlta;
     @Hidden
     @Column(name = "fechaBaja")
     private Date fechaBaja;

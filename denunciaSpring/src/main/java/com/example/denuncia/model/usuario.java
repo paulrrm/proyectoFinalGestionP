@@ -28,7 +28,7 @@ public class usuario {
     String password;
 
 
-    private DateJdbcType fechaAlta;
+    private Date fechaAlta;
 
     @Column(name = "fechaBaja")
     private Date fechaBaja;

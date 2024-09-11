@@ -1,6 +1,6 @@
 package com.itsqmet.denuncia.modelo;
 
-import java.time.*;
+import java.util.*;
 
 import javax.persistence.*;
 
@@ -17,8 +17,8 @@ public class reportes {
     @GeneratedValue(strategy=GenerationType.IDENTITY)
     private Long id;
 	
-	@DefaultValueCalculator(CurrentLocalDateCalculator.class)
-    private LocalDate fechaAlta;
+	@DefaultValueCalculator(CurrentDateCalculator.class)
+    private Date fechaAlta;
 	
 	@Column(length = 150) // 
     String descripcion;
