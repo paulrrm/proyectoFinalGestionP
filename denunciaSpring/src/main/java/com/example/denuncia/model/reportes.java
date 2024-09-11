@@ -4,22 +4,28 @@ import jakarta.persistence.*;
 import lombok.Getter;
 import lombok.Setter;
 
+import java.time.LocalDate;
 import java.util.Date;
 
-@Entity
-@Getter
-@Setter
+@Entity @Getter @Setter
 public class reportes {
 
+
     @Id
-    @GeneratedValue(strategy= GenerationType.IDENTITY)
+    @GeneratedValue(strategy=GenerationType.IDENTITY)
     private Long id;
 
-    @Column(name = "fechaAlta", columnDefinition = "DATE DEFAULT CURRENT_DATE")
-    private Date fechaAlta;
+
+    private LocalDate fechaAlta;
 
     @Column(length = 150) //
     String descripcion;
+
+
+    private String foto;
+
+    @ManyToOne
+    placa placa;
 
     @ManyToOne
     usuario usuario;

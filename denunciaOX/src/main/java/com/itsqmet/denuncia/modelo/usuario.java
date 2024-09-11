@@ -1,14 +1,19 @@
 package com.itsqmet.denuncia.modelo;
 
+import java.time.*;
 import java.util.*;
 
 import javax.persistence.*;
+
+import org.openxava.annotations.*;
+import org.openxava.calculators.*;
 
 import lombok.*;
 
 @Entity @Getter @Setter
 public class usuario {
 
+	@Hidden
     @Id
     @GeneratedValue(strategy=GenerationType.IDENTITY)
     private Long id;
@@ -21,9 +26,11 @@ public class usuario {
     String correo;
     @Column(length = 50) // 
     String password;
-    @Column(name = "fechaAlta", columnDefinition = "DATE DEFAULT CURRENT_DATE")
-    private Date fechaAlta;
-    @Column(name = "fechaBaja", columnDefinition = "DATE DEFAULT CURRENT_DATE")
+    @Required
+	@DefaultValueCalculator(CurrentLocalDateCalculator.class)
+    private LocalDate fechaAlta;
+    @Hidden
+    @Column(name = "fechaBaja")
     private Date fechaBaja;
     
     

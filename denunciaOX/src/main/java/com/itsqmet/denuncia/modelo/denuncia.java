@@ -1,30 +1,31 @@
 package com.itsqmet.denuncia.modelo;
 
+import java.time.*;
 import java.util.*;
 
 import javax.persistence.*;
-import javax.persistence.Entity;
 
-import org.hibernate.annotations.*;
+import org.openxava.annotations.*;
+import org.openxava.calculators.*;
 
 import lombok.*;
 
 @Entity @Getter @Setter
 public class denuncia {
 
+	@Hidden
 	@Id
     @GeneratedValue(strategy=GenerationType.IDENTITY)
     private Long id;
 	
-	@Column(name = "fechaAlta", columnDefinition = "DATE DEFAULT CURRENT_DATE")
-	    private Date fechaAlta;
+	@DefaultValueCalculator(CurrentLocalDateCalculator.class)
+    private LocalDate  fechaAlta;
 	
 	 @Column(name = "fechaRobo")
 	 @NonNull
 	 private Date fechaRobo;
 	 
-	 @Column(length = 10) // 
-	 String placa;
+
 	 
 	 @Column(length = 20) // 
 	 String color;
@@ -33,11 +34,18 @@ public class denuncia {
 	 @Column(length = 50) // 
 	 String marca;
 	 @Column(precision = 10, scale = 2)
-	 @Type(type = "big_decimal")
+	 
+	 @Money
 	 private double valor;
+	 
+	 @Files
+	 private String foto;
 	 
 	 @ManyToOne
 	 usuario usuario;
+	 
+	 @ManyToOne
+	 placa placa;
 	
 	
 }

@@ -3,16 +3,19 @@ package com.example.denuncia.model;
 import jakarta.persistence.*;
 import lombok.Getter;
 import lombok.Setter;
+import org.hibernate.type.descriptor.jdbc.DateJdbcType;
 
+import java.time.LocalDate;
+import java.time.LocalDateTime;
 import java.util.Date;
 
-@Entity
-@Getter
-@Setter
+
+@Entity @Getter @Setter
 public class usuario {
 
+
     @Id
-    @GeneratedValue(strategy= GenerationType.IDENTITY)
+    @GeneratedValue(strategy=GenerationType.IDENTITY)
     private Long id;
 
     @Column(length = 50) //
@@ -23,9 +26,11 @@ public class usuario {
     String correo;
     @Column(length = 50) //
     String password;
-    @Column(name = "fechaAlta", columnDefinition = "DATE DEFAULT CURRENT_DATE")
-    private Date fechaAlta;
-    @Column(name = "fechaBaja", columnDefinition = "DATE DEFAULT CURRENT_DATE")
+
+
+    private DateJdbcType fechaAlta;
+
+    @Column(name = "fechaBaja")
     private Date fechaBaja;
 
 

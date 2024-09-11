@@ -1,23 +1,33 @@
 package com.itsqmet.denuncia.modelo;
 
-import java.util.*;
+import java.time.*;
 
 import javax.persistence.*;
+
+import org.openxava.annotations.*;
+import org.openxava.calculators.*;
 
 import lombok.*;
 
 @Entity @Getter @Setter
 public class reportes {
 
+	@Hidden
 	@Id
     @GeneratedValue(strategy=GenerationType.IDENTITY)
     private Long id;
 	
-	@Column(name = "fechaAlta", columnDefinition = "DATE DEFAULT CURRENT_DATE")
-    private Date fechaAlta;
+	@DefaultValueCalculator(CurrentLocalDateCalculator.class)
+    private LocalDate fechaAlta;
 	
 	@Column(length = 150) // 
     String descripcion;
+	
+	@File
+	private String foto;
+	
+	@ManyToOne
+	placa placa;
 	
 	@ManyToOne
 	usuario usuario;

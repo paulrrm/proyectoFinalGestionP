@@ -9,6 +9,7 @@
     	<provider>org.hibernate.jpa.HibernatePersistenceProvider</provider>
     	<non-jta-data-source>java://comp/env/jdbc/denunciaDS</non-jta-data-source>
     	<class>org.openxava.session.GalleryImage</class>
+    	<class>org.openxava.web.editors.AttachedFile</class>
     	<class>org.openxava.web.editors.DiscussionComment</class>
     	<class>com.openxava.naviox.model.ConfigurationRecord</class>
     	<class>com.openxava.naviox.model.Folder</class>
@@ -28,6 +29,7 @@
     <!-- JUnit Hypersonic -->
     <persistence-unit name="junit">
     	<provider>org.hibernate.jpa.HibernatePersistenceProvider</provider>
+    	<class>org.openxava.web.editors.AttachedFile</class>
     	<class>org.openxava.web.editors.DiscussionComment</class>
     	<class>com.openxava.naviox.model.ConfigurationRecord</class>
     	<class>com.openxava.naviox.model.Folder</class>
