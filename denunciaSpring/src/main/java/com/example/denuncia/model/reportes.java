@@ -16,7 +16,7 @@ public class reportes {
     private Long id;
 
 
-    private LocalDate fechaAlta;
+    private LocalDate fechaalta;
 
     @Column(length = 150) //
     String descripcion;

@@ -18,7 +18,7 @@ public class reportes {
     private Long id;
 	
 	@DefaultValueCalculator(CurrentDateCalculator.class)
-    private Date fechaAlta;
+    private Date fechaalta;
 	
 	@Column(length = 150) // 
     String descripcion;

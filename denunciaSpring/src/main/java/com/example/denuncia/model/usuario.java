@@ -28,9 +28,9 @@ public class usuario {
     String password;
 
 
-    private Date fechaAlta;
+    private Date fechaalta;
 
-    @Column(name = "fechaBaja")
+    @Column(name = "fechabaja")
     private Date fechaBaja;
 
 

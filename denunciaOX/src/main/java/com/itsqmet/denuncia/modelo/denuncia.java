@@ -18,11 +18,11 @@ public class denuncia {
     private Long id;
 	
 	@DefaultValueCalculator(CurrentDateCalculator.class)
-    private Date  fechaAlta;
+    private Date  fechalta;
 	
 	 @Column(name = "fechaRobo")
 	 @NonNull
-	 private Date fechaRobo;
+	 private Date fecharobo;
 	 
 
 	 
@@ -37,7 +37,7 @@ public class denuncia {
 	 @Money
 	 private double valor;
 	 
-	 @Files
+	 @File
 	 private String foto;
 	 
 	 @ManyToOne

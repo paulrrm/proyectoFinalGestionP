@@ -27,10 +27,10 @@ public class usuario {
     String password;
     @Required
     @DefaultValueCalculator(CurrentDateCalculator.class)
-    private Date fechaAlta;
+    private Date fechaalta;
     @Hidden
     @Column(name = "fechaBaja")
-    private Date fechaBaja;
+    private Date fechabaja;
     
     
 }

@@ -20,11 +20,11 @@ public class denuncia {
     private Long id;
 
 
-    private LocalDate fechaAlta;
+    private LocalDate fechaalta;
 
     @Column(name = "fechaRobo")
     @NonNull
-    private Date fechaRobo;
+    private Date fecharobo;
 
 
 
