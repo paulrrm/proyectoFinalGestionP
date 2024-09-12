@@ -13,15 +13,18 @@ import androidx.core.view.WindowInsetsCompat;
 
 import com.example.appdenuncia.Parametros.config;
 import com.example.appdenuncia.Rest.RestLogin;
+import com.loopj.android.http.AsyncHttpClient;
+import com.loopj.android.http.BaseJsonHttpResponseHandler;
+import com.loopj.android.http.JsonHttpResponseHandler;
+import com.loopj.android.http.RequestParams;
+
+import org.json.JSONObject;
 
 import java.io.IOException;
 import java.util.ArrayList;
 
-import okhttp3.MediaType;
-import okhttp3.OkHttpClient;
-import okhttp3.Request;
-import okhttp3.RequestBody;
-import okhttp3.Response;
+import cz.msebera.android.httpclient.Header;
+
 
 
 public class MainActivity extends AppCompatActivity {
@@ -51,24 +54,46 @@ public class MainActivity extends AppCompatActivity {
 
     }
     public void accionLogin(View view){
-        AsyncTask.execute(new Runnable() {
+//        AsyncTask.execute(new Runnable() {
+//            @Override
+//            public void run() {
+//
+//                try {
+//
+//
+//                    new RestLogin().postFactura();
+//                    int aaaa=122;
+//                    accionGoPrincipal();
+//
+//                }
+//                catch (Exception e)
+//                {
+//
+//                }
+//
+//            }
+//        });
+        RequestParams params = new RequestParams();
+        //params.put("usr","p@gmail.com");
+       // params.put("password", "123123123");
+        AsyncHttpClient cliente = new AsyncHttpClient();
+        cliente.get("http://192.168.1.19:8088/denuncias/robo/usuario/login/p@gmail.com/123123123", params, new JsonHttpResponseHandler() {
             @Override
-            public void run() {
+            public void onSuccess(int statusCode, Header[] headers, JSONObject response) {
+                super.onSuccess(statusCode, headers, response);
+                int a =1;
+                Intent i = new Intent(getApplicationContext(), PrincipalActivity.class);
 
-                try {
-
-
-                    new RestLogin().postFactura();
-                    int aaaa=122;
-                    accionGoPrincipal();
-
-                }
-                catch (Exception e)
-                {
-
-                }
+                startActivity(i);
 
             }
+
+            @Override
+            public void onFailure(int statusCode, Header[] headers, String responseString, Throwable throwable) {
+                super.onFailure(statusCode, headers, responseString, throwable);
+                System.out.println("ERRORRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRR");
+            }
         });
+
     }
 }
