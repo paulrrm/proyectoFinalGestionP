@@ -1,5 +1,6 @@
 package com.example.appdenuncia;
 
+import android.content.Intent;
 import android.os.AsyncTask;
 import android.os.Bundle;
 import android.view.View;
@@ -10,6 +11,7 @@ import androidx.core.graphics.Insets;
 import androidx.core.view.ViewCompat;
 import androidx.core.view.WindowInsetsCompat;
 
+import com.example.appdenuncia.Parametros.config;
 import com.example.appdenuncia.Rest.RestLogin;
 
 import java.io.IOException;
@@ -35,6 +37,19 @@ public class MainActivity extends AppCompatActivity {
             return insets;
         });
     }
+    public void accionGoPrincipal(){
+        int a=1;
+        if(config.usr == null)
+        {
+
+        }
+        else if(config.usr.getId()>0){
+            Intent i = new Intent(this, PrincipalActivity.class);
+
+            startActivity(i);
+        }
+
+    }
     public void accionLogin(View view){
         AsyncTask.execute(new Runnable() {
             @Override
@@ -44,7 +59,8 @@ public class MainActivity extends AppCompatActivity {
 
 
                     new RestLogin().postFactura();
-
+                    int aaaa=122;
+                    accionGoPrincipal();
 
                 }
                 catch (Exception e)
