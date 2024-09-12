@@ -5,9 +5,7 @@ import java.util.List;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.*;
 
 import com.example.denuncias.model.denuncia;
 import com.example.denuncias.model.placa;
@@ -45,6 +43,10 @@ public class denonciaController {
             return ResponseEntity.status(HttpStatus.NOT_FOUND).body(null);
         }
     }
+    @PostMapping("/placas")
+    public placa postPlaca(@RequestBody placa plca){
+        return placarepository.save(plca);
+    }
     @GetMapping("/usuario")
     public ResponseEntity<List<usuario>> getUsuario(){
         try{
@@ -55,13 +57,49 @@ public class denonciaController {
             return ResponseEntity.status(HttpStatus.NOT_FOUND).body(null);
         }
     }
+    @GetMapping("/usuario/login/{usr}/{pdw}")
+    public ResponseEntity<usuario> getLogin(@PathVariable String usr, @PathVariable String pdw){
+        try{
+            usuario usuarios = usuariorepository.findByCorreoAndPassword(usr,pdw).get(0);
+            return ResponseEntity.ok(usuarios); 
+        }catch(Exception ex)
+        {
+            return ResponseEntity.status(HttpStatus.NOT_FOUND).body(null);
+        }
+    }
+    @PostMapping("/usuario")
+    public usuario postUsuario(@RequestBody usuario usr){
+        return usuariorepository.save(usr);
+    }
     @GetMapping("/denuncia")
-    public List<denuncia> getDenuncia(){
-        return denunciarepository.findAll();
+    public ResponseEntity<List<denuncia>> getDenuncia(){
+       try{
+            List<denuncia> denuncias = denunciarepository.findAll();
+            return ResponseEntity.ok(denuncias); 
+       }
+       catch(Exception ex)
+       {
+        return ResponseEntity.status(HttpStatus.NOT_FOUND).body(null);
+       }
+        
+    }
+    @PostMapping("/denuncia")
+    public denuncia postUsuario(@RequestBody denuncia denun){
+        return denunciarepository.save(denun);
     }
     @GetMapping("/reportes")
-    public List<reportes> getReportes(){
-        return reporterepository.findAll();
+    public ResponseEntity<List<reportes>> getReportes(){
+       try {
+        List<reportes> repos = reporterepository.findAll();
+        return ResponseEntity.ok(repos);
+        
+       } catch (Exception e) {
+         return ResponseEntity.status(HttpStatus.NOT_FOUND).body(null);
+       }
+    }
+    @PostMapping("/reporte")
+    public reportes postUsuario(@RequestBody reportes repor){
+        return reporterepository.save(repor);
     }
 
 

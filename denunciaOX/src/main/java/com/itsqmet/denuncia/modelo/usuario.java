@@ -29,7 +29,6 @@ public class usuario {
     @DefaultValueCalculator(CurrentDateCalculator.class)
     private Date fechaalta;
     @Hidden
-    @Column(name = "fechaBaja")
     private Date fechabaja;
     
     
