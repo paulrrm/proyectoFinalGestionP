@@ -6,9 +6,9 @@ public class denuncia {
 
 
 
-    private Date fechalta;
+    private String fechalta;
 
-    private Date fecharobo;
+    private String fecharobo;
 
     private String color;
 
@@ -25,21 +25,19 @@ public class denuncia {
     private placa placa;
 
 
-
-
-    public Date getFechalta() {
+    public String getFechalta() {
         return fechalta;
     }
 
-    public void setFechalta(Date fechalta) {
+    public void setFechalta(String fechalta) {
         this.fechalta = fechalta;
     }
 
-    public Date getFecharobo() {
+    public String getFecharobo() {
         return fecharobo;
     }
 
-    public void setFecharobo(Date fecharobo) {
+    public void setFecharobo(String fecharobo) {
         this.fecharobo = fecharobo;
     }
 

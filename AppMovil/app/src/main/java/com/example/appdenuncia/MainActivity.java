@@ -39,7 +39,7 @@ public class MainActivity extends AppCompatActivity {
         etusr= findViewById(R.id.main_etmail);
     }
     public void accionGoPrincipal(){
-        int a=1;
+            int a=1;
         if(config.usr == null)
         {
 

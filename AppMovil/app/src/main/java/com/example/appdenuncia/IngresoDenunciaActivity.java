@@ -6,6 +6,7 @@ import android.os.Bundle;
 import android.view.View;
 import android.widget.DatePicker;
 import android.widget.EditText;
+import android.widget.TextView;
 
 import androidx.activity.EdgeToEdge;
 import androidx.appcompat.app.AppCompatActivity;
@@ -13,6 +14,7 @@ import androidx.core.graphics.Insets;
 import androidx.core.view.ViewCompat;
 import androidx.core.view.WindowInsetsCompat;
 
+import com.example.appdenuncia.Parametros.config;
 import com.example.appdenuncia.Rest.PostPlaca;
 import com.example.appdenuncia.Rest.RestLogin;
 
@@ -21,6 +23,7 @@ import java.util.Calendar;
 public class IngresoDenunciaActivity extends AppCompatActivity {
 
     EditText color,fecha,marca,modelo,valor,placa,provincia;
+    static TextView resultado;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -38,6 +41,7 @@ public class IngresoDenunciaActivity extends AppCompatActivity {
         valor = findViewById(R.id.denuncia_etvalor);
         placa = findViewById(R.id.denuncia_etvplaca);
         provincia = findViewById(R.id.denuncia_etvprovincia);
+        resultado = findViewById(R.id.denuncia_tvresultado);
     }
     public void accion_pickdate(View view){
         final Calendar c = Calendar.getInstance();
@@ -60,6 +64,9 @@ public class IngresoDenunciaActivity extends AppCompatActivity {
         datePickerDialog.show();
 
     }
+    public void accionSalir(View view){
+        this.finish();
+    }
     public void accionGuardas(View view){
         AsyncTask.execute(new Runnable() {
             @Override
@@ -68,7 +75,18 @@ public class IngresoDenunciaActivity extends AppCompatActivity {
                 try {
 
 
-                    new PostPlaca(placa.getText().toString(),provincia.getText().toString()).execute();
+                    new PostPlaca(
+                            IngresoDenunciaActivity.this,
+                            config.usr,
+                            placa.getText().toString(),
+                            provincia.getText().toString(),
+                            color.getText().toString(),
+                            fecha.getText().toString(),
+                            marca.getText().toString(),
+                            modelo.getText().toString(),
+                            valor.getText().toString()
+
+                    ).execute();
 
 
 
@@ -80,5 +98,8 @@ public class IngresoDenunciaActivity extends AppCompatActivity {
             }
         });
 
+    }
+    public static void mostrarResultado(String texto){
+        resultado.setText(texto);
     }
 }

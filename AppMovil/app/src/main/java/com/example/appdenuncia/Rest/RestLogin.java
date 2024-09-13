@@ -43,7 +43,7 @@ public class RestLogin extends AsyncTask <String , Void , String> {
         try {
 
             URL url = null;
-            url = new URL("http://192.168.0.108:8088/denuncias/robo/usuario/login/"+usr+"/"+pwd);
+            url = new URL(config.ipserver +  "usuario/login/"+usr+"/"+pwd);
             String server_response = "";
             HttpURLConnection urlConnection = null;
             urlConnection = (HttpURLConnection) url.openConnection();

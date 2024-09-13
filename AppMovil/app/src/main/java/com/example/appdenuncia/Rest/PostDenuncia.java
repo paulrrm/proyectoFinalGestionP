@@ -1,7 +1,10 @@
 package com.example.appdenuncia.Rest;
 
 import android.os.AsyncTask;
+import android.widget.Toast;
 
+import com.example.appdenuncia.IngresoDenunciaActivity;
+import com.example.appdenuncia.Parametros.config;
 import com.example.appdenuncia.model.denuncia;
 import com.example.appdenuncia.model.placa;
 import com.example.appdenuncia.model.usuario;
@@ -18,12 +21,12 @@ public class PostDenuncia extends AsyncTask<String , Void , String> {
 
     private String placat, provincia , color,fecha,marca,modelo,valor;
     private usuario usuario;
+    private IngresoDenunciaActivity actividad;
 
 
 
-
-    public PostDenuncia(usuario usuario,String placa, String provincia,String color,String fecha,String marca, String modelo,String valor) {
-
+    public PostDenuncia(IngresoDenunciaActivity actividad,usuario usuario,String placa, String provincia,String color,String fecha,String marca, String modelo,String valor) {
+        this.actividad  = actividad;
         this.usuario    = usuario  ;
         this.placat      = placa    ;
         this.provincia  = provincia;
@@ -38,6 +41,8 @@ public class PostDenuncia extends AsyncTask<String , Void , String> {
 
         System.out.println("TERMINADO");
         //ingreso.accionGoPrincipal();
+        //Toast.makeText(actividad.getApplicationContext(),"Datos ingredados exitosamente", Toast.LENGTH_LONG).show();
+        IngresoDenunciaActivity.mostrarResultado("Ingresado con exito");
 
 
     }
@@ -45,18 +50,27 @@ public class PostDenuncia extends AsyncTask<String , Void , String> {
     @Override
     protected String doInBackground(String... strings) {
         try {
+            usuario.setFechaalta(null);
+            usuario.setFechabaja(null);
             placa placa = new placa();
             placa.setNumero(placat);
             placa.setProvincia(provincia);
             denuncia denuncia = new denuncia();
-
+            denuncia.setColor(color);
+            denuncia.setFechalta(config.getFechaString());
+            denuncia.setFecharobo(config.fechaFotmateada(fecha));
+            denuncia.setMarca(marca);
+            denuncia.setModelo(modelo);
+            denuncia.setValor(Double.parseDouble(valor));
+            denuncia.setUsuario(usuario);
+            denuncia.setPlaca(placa);
 
 
             Gson gson = new Gson();
             String salida = "";
-            salida = gson.toJson(placa);
+            salida = gson.toJson(denuncia);
             URL url = null;
-            url = new URL("http://192.168.0.108:8088/denuncias/robo/placas");
+            url = new URL(config.ipserver + "denuncia");
             String server_response = "";
             HttpURLConnection urlConnection = null;
 

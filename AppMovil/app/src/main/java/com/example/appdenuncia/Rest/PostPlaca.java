@@ -22,12 +22,14 @@ public class PostPlaca extends AsyncTask<String , Void , String> {
 
     private String placat, provincia , color,fecha,marca,modelo,valor;
     private usuario usuario;
+    private IngresoDenunciaActivity actividad;
 
 
 
 
-    public PostPlaca(usuario usuario,String placa, String provincia,String color,String fecha,String marca, String modelo,String valor) {
+    public PostPlaca(IngresoDenunciaActivity actividad, usuario usuario,String placa, String provincia,String color,String fecha,String marca, String modelo,String valor) {
 
+        this.actividad  = actividad;
         this.usuario    = usuario  ;
         this.placat     = placa    ;
         this.provincia  = provincia;
@@ -42,6 +44,37 @@ public class PostPlaca extends AsyncTask<String , Void , String> {
 
         System.out.println("TERMINADO");
         //ingreso.accionGoPrincipal();
+        //IngresoDenunciaActivity.set.setText("PLACA AGREGADA");
+
+        AsyncTask.execute(new Runnable() {
+            @Override
+            public void run() {
+
+                try {
+
+
+                    new PostDenuncia(
+                            actividad,
+                            config.usr,
+                            placat,
+                            provincia,
+                            color,
+                            fecha,
+                            marca,
+                            modelo,
+                            valor
+
+                    ).execute();
+
+
+
+                }
+                catch (Exception e)
+                {
+                }
+
+            }
+        });
 
 
     }
@@ -56,7 +89,7 @@ public class PostPlaca extends AsyncTask<String , Void , String> {
             String salida = "";
             salida = gson.toJson(placa);
             URL url = null;
-            url = new URL("http://192.168.0.108:8088/denuncias/robo/placas");
+            url = new URL( config.ipserver +    "placas");
             String server_response = "";
             HttpURLConnection urlConnection = null;
 
