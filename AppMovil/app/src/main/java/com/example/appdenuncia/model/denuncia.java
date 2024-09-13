@@ -4,7 +4,7 @@ import java.util.Date;
 
 public class denuncia {
 
-    private Long id;
+
 
     private Date fechalta;
 
@@ -25,13 +25,7 @@ public class denuncia {
     private placa placa;
 
 
-    public Long getId() {
-        return id;
-    }
 
-    public void setId(Long id) {
-        this.id = id;
-    }
 
     public Date getFechalta() {
         return fechalta;
