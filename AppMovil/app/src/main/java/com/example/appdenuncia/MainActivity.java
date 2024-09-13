@@ -4,6 +4,7 @@ import android.content.Intent;
 import android.os.AsyncTask;
 import android.os.Bundle;
 import android.view.View;
+import android.widget.EditText;
 
 import androidx.activity.EdgeToEdge;
 import androidx.appcompat.app.AppCompatActivity;
@@ -13,32 +14,29 @@ import androidx.core.view.WindowInsetsCompat;
 
 import com.example.appdenuncia.Parametros.config;
 import com.example.appdenuncia.Rest.RestLogin;
-import com.loopj.android.http.AsyncHttpClient;
-import com.loopj.android.http.BaseJsonHttpResponseHandler;
-import com.loopj.android.http.JsonHttpResponseHandler;
-import com.loopj.android.http.RequestParams;
+import com.example.appdenuncia.model.usuario;
+
 
 import org.json.JSONObject;
 
 import java.io.IOException;
 import java.util.ArrayList;
 
-import cz.msebera.android.httpclient.Header;
+
 
 
 
 public class MainActivity extends AppCompatActivity {
 
+    EditText etusr,etpwd;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        EdgeToEdge.enable(this);
+
         setContentView(R.layout.activity_main);
-        ViewCompat.setOnApplyWindowInsetsListener(findViewById(R.id.main), (v, insets) -> {
-            Insets systemBars = insets.getInsets(WindowInsetsCompat.Type.systemBars());
-            v.setPadding(systemBars.left, systemBars.top, systemBars.right, systemBars.bottom);
-            return insets;
-        });
+
+        etpwd = findViewById(R.id.main_etpwd);
+        etusr= findViewById(R.id.main_etmail);
     }
     public void accionGoPrincipal(){
         int a=1;
@@ -54,46 +52,25 @@ public class MainActivity extends AppCompatActivity {
 
     }
     public void accionLogin(View view){
-//        AsyncTask.execute(new Runnable() {
-//            @Override
-//            public void run() {
-//
-//                try {
-//
-//
-//                    new RestLogin().postFactura();
-//                    int aaaa=122;
-//                    accionGoPrincipal();
-//
-//                }
-//                catch (Exception e)
-//                {
-//
-//                }
-//
-//            }
-//        });
-        RequestParams params = new RequestParams();
-        //params.put("usr","p@gmail.com");
-       // params.put("password", "123123123");
-        AsyncHttpClient cliente = new AsyncHttpClient();
-        cliente.get("http://192.168.1.19:8088/denuncias/robo/usuario/login/p@gmail.com/123123123", params, new JsonHttpResponseHandler() {
-            @Override
-            public void onSuccess(int statusCode, Header[] headers, JSONObject response) {
-                super.onSuccess(statusCode, headers, response);
-                int a =1;
-                Intent i = new Intent(getApplicationContext(), PrincipalActivity.class);
+        AsyncTask.execute(new Runnable() {
+           @Override
+            public void run() {
 
-                startActivity(i);
+              try {
 
-            }
 
-            @Override
-            public void onFailure(int statusCode, Header[] headers, String responseString, Throwable throwable) {
-                super.onFailure(statusCode, headers, responseString, throwable);
-                System.out.println("ERRORRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRR");
-            }
+                   new RestLogin(MainActivity.this , etusr.getText().toString(), etpwd.getText().toString()).execute();
+
+
+
+               }
+               catch (Exception e)
+              {
+              }
+
+           }
         });
+
 
     }
 }

@@ -1,7 +1,9 @@
 package com.example.appdenuncia;
 
+import android.content.Intent;
 import android.os.Bundle;
 import android.widget.TextView;
+import android.view.View;
 
 import androidx.activity.EdgeToEdge;
 import androidx.appcompat.app.AppCompatActivity;
@@ -29,8 +31,22 @@ public class PrincipalActivity extends AppCompatActivity {
         mapDatos();
     }
     public void mapDatos(){
-          nombre.setText(config.usr.getNombre());
-          correo.setText(config.usr.getCorreo());
+          nombre.setText(" "+config.usr.getNombre() + " "+config.usr.getApellido());
+          correo.setText("CORREO: "+config.usr.getCorreo());
+    }
+    public void accionSalir(View view){
+        this.finish();
+    }
+
+    public void accionSDenuncia(View view){
+        Intent i = new Intent(this, IngresoDenunciaActivity.class);
+
+        startActivity(i);
+    }
+    public void accionReporte(View view){
+        Intent i = new Intent(this, ReporteActivity.class);
+
+        startActivity(i);
     }
 
 }

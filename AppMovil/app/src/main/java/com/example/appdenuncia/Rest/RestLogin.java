@@ -2,6 +2,7 @@ package com.example.appdenuncia.Rest;
 
 import android.os.AsyncTask;
 
+
 import com.example.appdenuncia.MainActivity;
 import com.example.appdenuncia.Parametros.config;
 import com.example.appdenuncia.model.usuario;
@@ -16,20 +17,23 @@ import java.net.URL;
 
 public class RestLogin extends AsyncTask <String , Void , String> {
 
-    public void postFactura() {
+    private MainActivity mainActivity;
+    private String usr;
+    private String pwd;
 
-        doInBackground();
+
+
+
+    public RestLogin(MainActivity activity, String usr, String pwd) {
+        this.mainActivity = activity;
+        this.usr = usr;
+        this.pwd = pwd;
     }
 
-        protected void onPostExecute(Long result) {
+    protected void onPostExecute() {
 
         System.out.println("TERMINADO");
-        if(config.usr == null ){
-
-        }
-        else{
-
-        }
+        mainActivity.accionGoPrincipal();
 
 
     }
@@ -37,19 +41,9 @@ public class RestLogin extends AsyncTask <String , Void , String> {
     @Override
     protected String doInBackground(String... strings) {
         try {
-//            OkHttpClient client = new OkHttpClient().newBuilder()
-//                    .build();
-//            MediaType mediaType = MediaType.parse("text/plain");
-//            RequestBody body = RequestBody.create(mediaType, "");
-//            Request request = new Request.Builder()
-//                    .url("http://192.168.0.108:8088/denuncias/robo/usuario/login/prm/prm")
-//
-//                    .build();
-//            Response response = client.newCall(request).execute();
-//            int a =1;
-//            System.out.println("EXITO"+ response.message());
+
             URL url = null;
-            url = new URL("http://192.168.1.19:8088/denuncias/robo/usuario/login/p@gmail.com/123123123");
+            url = new URL("http://192.168.0.108:8088/denuncias/robo/usuario/login/"+usr+"/"+pwd);
             String server_response = "";
             HttpURLConnection urlConnection = null;
             urlConnection = (HttpURLConnection) url.openConnection();
@@ -103,6 +97,7 @@ public class RestLogin extends AsyncTask <String , Void , String> {
                 int a =1;
                 System.out.println("ERROR"+e.getMessage());
             }
+        onPostExecute();
         return "";
     }
 }

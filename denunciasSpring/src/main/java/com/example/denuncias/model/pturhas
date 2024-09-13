@@ -1,0 +1,8 @@
+        this.usuario    = usuario  ;       
+        this.placa      = placa    ;    
+        this.provincia  = provincia;
+        this.color      = color    ;
+        this.fecha      = fecha    ;
+        this.marca      = marca    ;
+        this.modelo     = modelo   ;
+        this.valor      = valor    ;

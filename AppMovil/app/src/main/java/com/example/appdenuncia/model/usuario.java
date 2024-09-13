@@ -15,6 +15,12 @@ public class usuario {
 
     String password;
 
+
+
+
+
+
+
     private Date fechaalta;
 
     private Date fechabaja;
