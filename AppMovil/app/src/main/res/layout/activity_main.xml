@@ -103,6 +103,7 @@
         android:layout_height="wrap_content"
         android:layout_marginTop="32dp"
         android:backgroundTint="#0F490A"
+        android:onClick="accionRegistro"
         android:text="REGISTRAR"
         android:textColor="#B9B6B6"
         app:layout_constraintEnd_toEndOf="parent"

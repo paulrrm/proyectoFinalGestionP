@@ -11,7 +11,7 @@ import java.util.Date;
 public  class config {
 
     public static usuario usr;
-    public static String ipserver = "http://192.168.1.19:8088/denuncias/robo/";
+    public static String ipserver = "http://192.168.0.108:8088/denuncias/robo/";
     public static String fechaFotmateada(String actual){
         SimpleDateFormat inputFormat = new SimpleDateFormat("yyyy-M-d");
 

@@ -22,7 +22,7 @@ import java.util.Calendar;
 
 public class IngresoDenunciaActivity extends AppCompatActivity {
 
-    EditText color,fecha,marca,modelo,valor,placa,provincia;
+    static EditText color,fecha,marca,modelo,valor,placa,provincia;
     static TextView resultado;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -101,5 +101,15 @@ public class IngresoDenunciaActivity extends AppCompatActivity {
     }
     public static void mostrarResultado(String texto){
         resultado.setText(texto);
+        accionLimpiarCampos();
+    }
+    public static void accionLimpiarCampos(){
+        color.setText("");
+        fecha.setText("");
+        marca.setText("");
+        modelo.setText("");
+        valor.setText("");
+        placa.setText("");
+        provincia.setText("");
     }
 }
