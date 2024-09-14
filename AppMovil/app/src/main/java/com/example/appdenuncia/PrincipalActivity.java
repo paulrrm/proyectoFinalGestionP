@@ -2,6 +2,7 @@ package com.example.appdenuncia;
 
 import android.content.Intent;
 import android.os.Bundle;
+import android.widget.ImageView;
 import android.widget.TextView;
 import android.view.View;
 
@@ -16,6 +17,7 @@ import com.example.appdenuncia.Parametros.config;
 public class PrincipalActivity extends AppCompatActivity {
 
     TextView nombre , correo ;
+    ImageView imgbtdenuncia;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -28,7 +30,14 @@ public class PrincipalActivity extends AppCompatActivity {
         });
         correo = findViewById(R.id.principal_tb_correo);
         nombre = findViewById(R.id.principal_tb_nombre);
+        imgbtdenuncia = findViewById(R.id.principal_imgdenuncia);
         mapDatos();
+        imgbtdenuncia.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                accionSDenuncia(v);
+            }
+        });
     }
     public void mapDatos(){
           nombre.setText(" "+config.usr.getNombre() + " "+config.usr.getApellido());
